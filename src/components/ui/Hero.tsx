@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { FiArrowRight, FiGithub, FiLinkedin } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 
 export default function Hero() {
