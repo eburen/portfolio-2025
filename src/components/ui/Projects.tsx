@@ -1,13 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FiExternalLink, FiGithub, FiChevronRight, FiCalendar, FiBriefcase } from "react-icons/fi";
+import { FiChevronRight, FiCalendar, FiBriefcase } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 
-// Project data - replace with your own projects
 const projects = [
     {
         id: 1,
@@ -27,16 +25,12 @@ const projects = [
             "プロジェクト全体を俯瞰し、自己完結型の開発を進める自己管理能力",
             "レガシーシステム特有の制約を克服し、最新技術と統合する変換的アプローチ"
         ],
-        tags: ["ASP.NET MVC", "C#", "Windows", "TFS/DevOps", "詳細設計書", "内部・外部設計書", "テスト仕様書"],
-        liveUrl: "",
-        githubUrl: "",
-        featured: true,
-        category: "web"
+        tags: ["ASP.NET MVC", "C#", "Windows", "TFS/DevOps", "詳細設計書", "内部・外部設計書", "テスト仕様書"]
     },
     {
         id: 2,
-        title: "資産管理のSaaS開発",
-        description: "Vanilla.jsを用いたストアドアプローチによる資産管理SaaSの開発プロジェクト。モダンなUIと効率的なデータフローを実現するフロントエンド構築を担当。",
+        title: "倉庫管理のSaaS開発",
+        description: "Vanilla.jsを用いたストアドアプローチによる倉庫管理SaaSの開発プロジェクト。モダンなUIと効率的なデータフローを実現するフロントエンド構築を担当。",
         image: "/images/developer.jpg",
         period: "2023/07",
         position: "フロントエンド開発者",
@@ -49,61 +43,13 @@ const projects = [
             "REST APIとの統合",
             "インタラクティブUIの開発"
         ],
-        tags: ["Vanilla.js", "MySQL", "GitHub", "フロントエンド開発", "SaaS"],
-        liveUrl: "",
-        githubUrl: "",
-        featured: true,
-        category: "web"
-    },
-    {
-        id: 3,
-        title: "Health Insurance System",
-        description: "A full-stack e-commerce platform with payment processing, user authentication, and product management.",
-        image: "/images/developer.jpg",
-        tags: ["React", "Node.js", "MongoDB", "Express", "Redux"],
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: true,
-        category: "web"
-    },
-    {
-        id: 4,
-        title: "Task Management App",
-        description: "A collaborative task management application with real-time updates and team collaboration features.",
-        image: "/images/developer.jpg",
-        tags: ["React", "Firebase", "Tailwind CSS", "Redux"],
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: true,
-        category: "web"
+        tags: ["Vanilla.js", "MySQL", "GitHub", "フロントエンド開発", "SaaS"]
     }
 ];
 
-// Filter types
-type FilterType = "all" | "featured" | "web" | "mobile" | "backend";
-
 export default function Projects() {
     const { t } = useTranslation();
-    const [filter, setFilter] = useState<FilterType>("all");
 
-    // Filter projects based on selection
-    const filteredProjects = () => {
-        switch (filter) {
-            case "featured":
-                return projects.filter(project => project.featured);
-            case "web":
-                return projects.filter(project => project.category === "web");
-            case "mobile":
-                return projects.filter(project => project.category === "mobile");
-            case "backend":
-                return projects.filter(project => project.category === "backend");
-            case "all":
-            default:
-                return projects;
-        }
-    };
-
-    // Animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -125,7 +71,6 @@ export default function Projects() {
         }
     };
 
-    // Hover animation for project cards
     const cardHoverAnimation = {
         scale: 1.03,
         boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
@@ -156,51 +101,7 @@ export default function Projects() {
                         {t('projects.description')}
                     </motion.p>
                 </motion.div>
-
-                {/* Filter buttons */}
-                <div className="flex flex-wrap justify-center gap-3 mb-12">
-                    <motion.button
-                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
-                        onClick={() => setFilter('all')}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        {t('projects.filter.all')}
-                    </motion.button>
-                    <motion.button
-                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'featured' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
-                        onClick={() => setFilter('featured')}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        {t('projects.filter.featured')}
-                    </motion.button>
-                    <motion.button
-                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'web' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
-                        onClick={() => setFilter('web')}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        {t('projects.filter.web')}
-                    </motion.button>
-                    <motion.button
-                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'mobile' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
-                        onClick={() => setFilter('mobile')}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        {t('projects.filter.mobile')}
-                    </motion.button>
-                    <motion.button
-                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'backend' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
-                        onClick={() => setFilter('backend')}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        {t('projects.filter.backend')}
-                    </motion.button>
-                </div>
-
+                
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                     variants={containerVariants}
@@ -208,7 +109,7 @@ export default function Projects() {
                     whileInView="visible"
                     viewport={{ once: true }}
                 >
-                    {filteredProjects().map((project) => (
+                    {projects.map((project) => (
                         <motion.div
                             key={project.id}
                             className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden h-full flex flex-col"
@@ -286,36 +187,6 @@ export default function Projects() {
                                             {tag}
                                         </motion.span>
                                     ))}
-                                </div>
-
-                                <div className="flex space-x-3 mt-auto">
-                                    {project.liveUrl && (
-                                        <motion.a
-                                            href={project.liveUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors"
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                        >
-                                            <FiExternalLink className="mr-2" />
-                                            {t('projects.liveDemo')}
-                                        </motion.a>
-                                    )}
-
-                                    {project.githubUrl && (
-                                        <motion.a
-                                            href={project.githubUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-500 text-gray-700 dark:text-gray-300 rounded-lg text-sm transition-colors"
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                        >
-                                            <FiGithub className="mr-2" />
-                                            {t('projects.sourceCode')}
-                                        </motion.a>
-                                    )}
                                 </div>
                             </div>
                         </motion.div>

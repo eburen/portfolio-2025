@@ -41,7 +41,6 @@ export default function Navbar() {
                         </motion.div>
                     </Link>
 
-                    {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center">
                         <nav className="flex items-center space-x-8 mr-6">
                             {navLinks.map((link) => (
@@ -67,7 +66,6 @@ export default function Navbar() {
                             ))}
                         </nav>
 
-                        {/* Social Links */}
                         <div className="flex items-center space-x-4">
                             {socialLinks.map((social, index) => (
                                 <a
@@ -85,7 +83,6 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    {/* Mobile Menu Button */}
                     <button
                         className="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         onClick={toggleMenu}
@@ -100,7 +97,6 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Navigation */}
             {isMenuOpen && (
                 <motion.div
                     initial={{ opacity: 0, height: 0 }}
@@ -124,7 +120,6 @@ export default function Navbar() {
                             </Link>
                         ))}
 
-                        {/* Mobile Social Links */}
                         <div className="flex items-center space-x-4 pt-2 px-4">
                             {socialLinks.map((social, index) => (
                                 <a

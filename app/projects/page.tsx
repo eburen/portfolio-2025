@@ -3,189 +3,75 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { FiExternalLink, FiGithub, FiTag, FiCalendar, FiCode, FiLayers } from "react-icons/fi";
+import { FiCalendar, FiCode, FiLayers } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
 
 type Project = {
     id: number;
     title: string;
     description: string;
-    longDescription: string;
+    longDescription?: string;
     image: string;
     tags: string[];
-    category: string;
-    liveUrl: string;
-    githubUrl: string;
-    featured: boolean;
-    date: string;
+    date?: string;
+    period: string;
+    position: string;
+    responsibilities: string[];
 };
 
-type FilterType = "all" | "featured" | "web" | "mobile" | "backend";
-type SortType = "latest" | "oldest";
-
-// Sample project data - replace with your own projects
-const projects: Project[] = [
+const projectsData: Project[] = [
     {
         id: 1,
-        title: "E-commerce Platform",
-        description: "A full-stack e-commerce platform with payment processing, user authentication, and product management.",
-        longDescription: "This e-commerce platform includes features like user authentication, product catalog, shopping cart, payment processing with Stripe, order management, and an admin dashboard. It was built with React for the frontend, Node.js/Express for the backend, and MongoDB for the database.",
-        image: "/images/project1.jpg",
-        tags: ["React", "Node.js", "MongoDB", "Stripe", "Redux"],
-        category: "web",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: true,
-        date: "2023-11-15"
+        title: "保険関連のウェブアプリ開発",
+        description: "大手保険会社向けウォーターフォール開発。複雑な業務ロジックを持つウェブアプリケーションの開発と既存レガシーシステムの最新バージョンおよび開発技術への移行を担当。",
+        longDescription: "大手保険会社向けウォーターフォール開発。複雑な業務ロジックを持つウェブアプリケーションの開発と既存レガシーシステムの最新バージョンおよび開発技術への移行を担当。",
+        image: "/images/devPc.jpg",
+        period: "2023/12 - 2025/06",
+        position: "開発エンジニア",
+        date: "2023-12-01",
+        responsibilities: [
+            "外部設計・内部設計の作成",
+            "コーディングおよびUT・IT・STのテスト設計と実施",
+            "エラー処理の実装および複数の業務フローの担当",
+            "技術プロジェクトのバグ改修",
+            "複雑な業務ロジックを分析し、設計に落とし込む力",
+            "新旧技術の差を考慮したシステム設計および開発",
+            "ユーザー視点を意識したテスト仕様書の作成と効率的なテスト実施能力",
+            "プロジェクト全体を俯瞰し、自己完結型の開発を進める自己管理能力",
+            "レガシーシステム特有の制約を克服し、最新技術と統合する変換的アプローチ"
+        ],
+        tags: ["ASP.NET MVC", "C#", "Windows", "TFS/DevOps", "詳細設計書", "内部・外部設計書", "テスト仕様書"]
     },
     {
         id: 2,
-        title: "Task Management App",
-        description: "A collaborative task management application with real-time updates and team collaboration features.",
-        longDescription: "This task management app allows teams to collaborate on projects in real-time. It features task creation and assignment, status tracking, deadline management, file attachments, comments, and notifications. Built with React and Firebase for real-time functionality.",
-        image: "/images/project2.jpg",
-        tags: ["React", "Firebase", "Tailwind CSS", "Redux"],
-        category: "web",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: true,
-        date: "2023-09-20"
-    },
-    {
-        id: 3,
-        title: "Travel Blog",
-        description: "A responsive travel blog with dynamic content management and photo galleries.",
-        longDescription: "A dynamic travel blog that allows users to create and share travel stories, upload photos to galleries, comment on posts, save favorites, and search for content. It features a responsive design and was built with Next.js, GraphQL, and Contentful CMS.",
-        image: "/images/project3.jpg",
-        tags: ["Next.js", "GraphQL", "Contentful", "Tailwind CSS"],
-        category: "web",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: false,
-        date: "2023-07-10"
-    },
-    {
-        id: 4,
-        title: "Weather Dashboard",
-        description: "Real-time weather application with location detection and forecast visualization.",
-        longDescription: "This weather dashboard provides current conditions and forecasts based on user location or search. It features interactive maps, temperature and precipitation charts, hourly and 7-day forecasts, and severe weather alerts. Built with React and various weather APIs.",
-        image: "/images/project4.jpg",
-        tags: ["React", "APIs", "Chart.js", "Geolocation"],
-        category: "web",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: false,
-        date: "2023-05-18"
-    },
-    {
-        id: 5,
-        title: "Portfolio Website",
-        description: "A personal portfolio website built with modern technologies to showcase projects and skills.",
-        longDescription: "This portfolio website showcases my projects and skills in web development. It features smooth animations, dark mode support, and responsive design. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion for animations.",
-        image: "/images/project5.jpg",
-        tags: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
-        category: "web",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: true,
-        date: "2023-04-01"
-    },
-    {
-        id: 6,
-        title: "Fitness Tracker",
-        description: "A fitness tracking application for monitoring workouts, progress, and health metrics.",
-        longDescription: "This fitness tracking app helps users monitor their workouts, track progress over time, set goals, log nutrition, and connect with fitness devices. It includes data visualization for progress metrics and was built with React Native for cross-platform functionality.",
-        image: "/images/project6.jpg",
-        tags: ["React Native", "Firebase", "Charts", "Health APIs"],
-        category: "mobile",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: false,
-        date: "2023-02-15"
-    },
-    {
-        id: 7,
-        title: "Restaurant Booking System",
-        description: "A booking system for restaurants with real-time availability and user management.",
-        longDescription: "This restaurant booking system allows customers to view availability and make reservations in real-time. Restaurant owners can manage tables, track reservations, and handle customer data. The system includes email confirmations and reminders, and was built with Node.js and MongoDB.",
-        image: "/images/project7.jpg",
-        tags: ["Node.js", "Express", "MongoDB", "JWT", "Socket.io"],
-        category: "backend",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: false,
-        date: "2022-12-10"
-    },
-    {
-        id: 8,
-        title: "Social Media Dashboard",
-        description: "A dashboard for tracking social media metrics and automating posting schedules.",
-        longDescription: "This social media dashboard helps manage multiple social accounts, schedule posts, analyze engagement metrics, and track growth. It features a clean interface for viewing analytics across platforms and was built with React and various social media APIs.",
-        image: "/images/project8.jpg",
-        tags: ["React", "Redux", "Express", "Analytics", "APIs"],
-        category: "web",
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: false,
-        date: "2022-10-05"
+        title: "倉庫管理のSaaS開発",
+        description: "Vanilla.jsを用いたストアドアプローチによる倉庫管理SaaSの開発プロジェクト。モダンなUIと効率的なデータフローを実現するフロントエンド構築を担当。",
+        longDescription: "Vanilla.jsを用いたストアドアプローチによる倉庫管理SaaSの開発プロジェクト。モダンなUIと効率的なデータフローを実現するフロントエンド構築を担当。",
+        image: "/images/developer.jpg",
+        period: "2023/07",
+        position: "フロントエンド開発者",
+        date: "2023-07-01",
+        responsibilities: [
+            "Vanilla.js、ストアドアプローチでの作成",
+            "コンポーネント設計とモジュール化",
+            "状態管理システムの実装",
+            "パフォーマンス最適化",
+            "クロスブラウザ互換性の確保",
+            "REST APIとの統合",
+            "インタラクティブUIの開発"
+        ],
+        tags: ["Vanilla.js", "MySQL", "GitHub", "フロントエンド開発", "SaaS"]
     }
 ];
 
+
 export default function ProjectsPage() {
     const { t } = useTranslation();
-    const [filter, setFilter] = useState<FilterType>("all");
-    const [sort, setSort] = useState<SortType>("latest");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-    // Filter and sort projects
-    const getFilteredProjects = () => {
-        let filtered = [...projects];
-
-        // Apply filter
-        switch (filter) {
-            case "featured":
-                filtered = filtered.filter(project => project.featured);
-                break;
-            case "web":
-                filtered = filtered.filter(project => project.category === "web");
-                break;
-            case "mobile":
-                filtered = filtered.filter(project => project.category === "mobile");
-                break;
-            case "backend":
-                filtered = filtered.filter(project => project.category === "backend");
-                break;
-            default:
-                // "all" - no filtering needed
-                break;
-        }
-
-        // Apply sort
-        filtered.sort((a, b) => {
-            const dateA = new Date(a.date).getTime();
-            const dateB = new Date(b.date).getTime();
-
-            return sort === "latest" ? dateB - dateA : dateA - dateB;
-        });
-
-        return filtered;
-    };
-
-    const filteredProjects = getFilteredProjects();
-
-    // Filter labels
-    const filterLabels: Record<FilterType, string> = {
-        all: t('projects.filter.all'),
-        featured: t('projects.filter.featured'),
-        web: t('projects.filter.web'),
-        mobile: t('projects.filter.mobile'),
-        backend: t('projects.filter.backend')
-    };
 
     return (
         <div className="py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
                 <div className="max-w-3xl mx-auto text-center mb-12">
                     <motion.h1
                         className="text-4xl sm:text-5xl font-bold mb-4"
@@ -203,53 +89,17 @@ export default function ProjectsPage() {
                     >
                         {t('projects.subheader')}
                     </motion.p>
-
-                    {/* Filters and Sorting */}
-                    <div className="flex flex-col sm:flex-row justify-between gap-4 mb-10">
-                        {/* Filter Buttons */}
-                        <div className="flex flex-wrap justify-center gap-2">
-                            {["all", "featured", "web", "mobile", "backend"].map((filterType) => (
-                                <motion.button
-                                    key={filterType}
-                                    onClick={() => setFilter(filterType as FilterType)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === filterType
-                                        ? "bg-blue-600 text-white"
-                                        : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-                                        }`}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    {filterLabels[filterType as FilterType]}
-                                </motion.button>
-                            ))}
-                        </div>
-
-                        {/* Sort Options */}
-                        <div className="flex items-center justify-center">
-                            <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">{t('projects.sort.label')}</span>
-                            <select
-                                value={sort}
-                                onChange={(e) => setSort(e.target.value as SortType)}
-                                className="px-3 py-2 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-none focus:ring-2 focus:ring-blue-500"
-                            >
-                                <option value="latest">{t('projects.sort.latest')}</option>
-                                <option value="oldest">{t('projects.sort.oldest')}</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
 
-                {/* Projects Grid */}
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={filter + sort}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                     >
-                        {filteredProjects.map((project) => (
+                        {projectsData.map((project) => (
                             <motion.div
                                 key={project.id}
                                 className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg h-full flex flex-col"
@@ -259,7 +109,6 @@ export default function ProjectsPage() {
                                 whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
                                 onClick={() => setSelectedProject(project)}
                             >
-                                {/* Project Image */}
                                 <div className="relative w-full h-48 overflow-hidden">
                                     <Image
                                         src={project.image}
@@ -268,23 +117,12 @@ export default function ProjectsPage() {
                                         className="object-cover transition-transform duration-500 hover:scale-110"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
-                                    {project.featured && (
-                                        <div className="absolute top-2 right-2">
-                                            <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                                                {t('projects.filter.featured')}
-                                            </span>
-                                        </div>
-                                    )}
                                 </div>
 
-                                {/* Project Content */}
                                 <div className="p-6 flex-1 flex flex-col">
                                     <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
                                         <FiCalendar className="mr-1" />
-                                        <span>{new Date(project.date).toLocaleDateString()}</span>
-                                        <span className="mx-2">•</span>
-                                        <FiTag className="mr-1" />
-                                        <span>{project.category}</span>
+                                        <span>{new Date(project.date || "").toLocaleDateString()}</span>
                                     </div>
 
                                     <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
@@ -294,7 +132,6 @@ export default function ProjectsPage() {
                                         {project.description}
                                     </p>
 
-                                    {/* Project Tags */}
                                     <div className="flex flex-wrap gap-2 mb-4">
                                         {project.tags.slice(0, 3).map((tag, index) => (
                                             <span
@@ -310,37 +147,12 @@ export default function ProjectsPage() {
                                             </span>
                                         )}
                                     </div>
-
-                                    {/* Project Links */}
-                                    <div className="flex space-x-2 mt-auto">
-                                        <a
-                                            href={project.liveUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors flex-1"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            <FiExternalLink className="mr-2" />
-                                            {t('projects.liveDemo')}
-                                        </a>
-                                        <a
-                                            href={project.githubUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center px-4 py-2 bg-gray-700 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors flex-1"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            <FiGithub className="mr-2" />
-                                            {t('projects.sourceCode')}
-                                        </a>
-                                    </div>
                                 </div>
                             </motion.div>
                         ))}
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Project Modal */}
                 {selectedProject && (
                     <div
                         className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
@@ -376,10 +188,7 @@ export default function ProjectsPage() {
                             <div className="p-6 md:p-8">
                                 <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
                                     <FiCalendar className="mr-1" />
-                                    <span>{new Date(selectedProject.date).toLocaleDateString()}</span>
-                                    <span className="mx-2">•</span>
-                                    <FiTag className="mr-1" />
-                                    <span>{selectedProject.category}</span>
+                                    <span>{new Date(selectedProject.date || "").toLocaleDateString()}</span>
                                 </div>
 
                                 <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">{selectedProject.title}</h2>
@@ -409,27 +218,6 @@ export default function ProjectsPage() {
                                             </span>
                                         ))}
                                     </div>
-                                </div>
-
-                                <div className="flex space-x-4">
-                                    <a
-                                        href={selectedProject.liveUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex-1 flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
-                                    >
-                                        <FiExternalLink className="mr-2" />
-                                        {t('projects.projectDetails.viewLive')}
-                                    </a>
-                                    <a
-                                        href={selectedProject.githubUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex-1 flex items-center justify-center px-6 py-3 bg-gray-700 text-white font-medium rounded-md hover:bg-gray-800 transition-colors"
-                                    >
-                                        <FiGithub className="mr-2" />
-                                        {t('projects.projectDetails.viewCode')}
-                                    </a>
                                 </div>
                             </div>
                         </motion.div>

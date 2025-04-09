@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic';
 
-// Dynamically import Navbar and Footer with no SSR
 const Navbar = dynamic(() => import('./Navbar'), { ssr: false });
 const Footer = dynamic(() => import('./Footer'), { ssr: false });
 

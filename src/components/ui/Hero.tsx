@@ -9,7 +9,6 @@ import { useTranslation } from "react-i18next";
 export default function Hero() {
     const { t } = useTranslation();
 
-    // Animation variants for text animation
     const textVariants = {
         hidden: { opacity: 0, y: 20 },
         visible: (i: number) => ({
@@ -21,8 +20,6 @@ export default function Hero() {
             }
         })
     };
-
-    // Animation for floating effect
     const floatingAnimation = {
         y: [0, -10, 0],
         transition: {
@@ -34,7 +31,6 @@ export default function Hero() {
 
     return (
         <section className="relative overflow-hidden py-20 sm:py-32">
-            {/* Background pattern with animation */}
             <div className="absolute inset-0 -z-10 opacity-5">
                 <motion.svg
                     animate={{
@@ -72,7 +68,6 @@ export default function Hero() {
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    {/* Left column - Text content */}
                     <motion.div
                         className="lg:pr-10"
                         initial={{ opacity: 0, y: 20 }}
@@ -141,7 +136,6 @@ export default function Hero() {
                         </motion.div>
                     </motion.div>
 
-                    {/* Right column - Image with animations */}
                     <motion.div
                         className="relative h-72 sm:h-80 md:h-96 lg:h-[600px] rounded-lg overflow-hidden"
                         initial={{ opacity: 0, scale: 0.9 }}

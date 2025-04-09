@@ -10,7 +10,7 @@
         "titleHighlight": "modern web experiences",
         "titleEnd": "with impact",
         "jobTitle": "Fullstack Developer",
-        "description": "I'm a passionate fullstack developer specializing in creating responsive and user-friendly web applications using .NET, Javascript, Typescript, React, Next.js, and Vue.",
+        "description": "I'm a passionate fullstack developer specializing in creating responsive and user-friendly web applications using .NET, Javascript, Typescript, React",
         "viewWork": "View My Work"
     },
     "skills": {
@@ -33,34 +33,18 @@
         "title": "Recent Projects",
         "description": "Check out my latest work. These projects showcase my technical abilities and problem-solving skills.",
         "viewAll": "View All",
-        "liveDemo": "Live Demo",
-        "sourceCode": "Source Code",
         "techStack": "Tech Stack:",
         "header": "My Work",
         "subheader": "Showcasing my recent work and personal projects",
-        "filter": {
-            "all": "All",
-            "featured": "Featured",
-            "web": "Web",
-            "mobile": "Mobile",
-            "backend": "Backend"
-        },
-        "sort": {
-            "label": "Sort by:",
-            "latest": "Latest",
-            "oldest": "Oldest"
-        },
         "projectDetails": {
             "overview": "Overview",
             "technologies": "Technologies",
-            "viewLive": "View Live",
-            "viewCode": "View Code",
             "close": "Close"
-        }
+        }   
     },
     "about": {
         "title": "About Me",
-        "subtitle": "I'm a passionate fullstack developer with over 3 years of experience building web applications. My specialization is development using .NET framework & JS (Typescript, React, Vue).",
+        "subtitle": "I'm a passionate fullstack developer with over 3 years of experience building web applications. My specialization is development using .NET framework & JS (Typescript, React).",
         "description": "I'm passionate about creating clean, efficient, and user-friendly applications. When I'm not coding, I enjoy exploring new technologies or engaging in outdoor activities.",
         "downloadResume": "Download Resume",
         "linkedin": "LinkedIn",

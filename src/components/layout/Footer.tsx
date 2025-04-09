@@ -23,7 +23,6 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
     const { t } = useTranslation();
 
-    // Particle animation
     const heartAnimation = {
         scale: [1, 1.2, 1],
         transition: {
@@ -70,7 +69,6 @@ export default function Footer() {
                         </Link>
                     </div>
 
-                    {/* Language Switcher */}
                     <div className="mt-4">
                         <LanguageSwitcher />
                     </div>

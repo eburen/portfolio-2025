@@ -28,27 +28,26 @@ const StarRating = ({ rating }: { rating: number }) => {
 export default function Skills() {
     const { t } = useTranslation();
 
-    // Create floating animation for skill cards
     const floatingAnimation = (i: number) => ({
         y: [0, -7, 0],
         transition: {
-            duration: 3 + i * 0.5, // Different duration for each card
+            duration: 3 + i * 0.5,
             repeat: Infinity,
             repeatType: "reverse" as const,
             delay: i * 0.2
         }
     });
 
-    // Tech skills with ratings (5 = most skilled, 1 = least skilled)
     const techSkills = [
-        { name: "JavaScript", rating: 4.5 },
-        { name: "TypeScript", rating: 4.5 },
-        { name: ".NET / C#", rating: 4.5 },
-        { name: "React", rating: 3.5 },
-        { name: "Next.js", rating: 3 },
-        { name: "Node.js", rating: 3.5 },
-        { name: "Tailwind CSS", rating: 4 },
-        { name: "Vue", rating: 3 },
+        { name: "JavaScript", rating: 4 },
+        { name: "HTML/CSS", rating: 4 },
+        { name: "TypeScript", rating: 4 },
+        { name: ".NET / C#", rating: 4 },
+        { name: "React", rating: 3 },
+        { name: "Next.js", rating: 1 },
+        { name: "Node.js", rating: 2.5 },
+        { name: "Tailwind CSS", rating: 3 },
+        { name: "Vue", rating: 2.5 },
         { name: "Bootstrap", rating: 3 }
     ];
 
@@ -127,7 +126,6 @@ export default function Skills() {
                     </motion.p>
                 </motion.div>
 
-                {/* Tech Skills with Star Ratings */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -162,7 +160,6 @@ export default function Skills() {
                     </div>
                 </motion.div>
 
-                {/* Language Skills with Star Ratings */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -198,7 +195,6 @@ export default function Skills() {
                     </div>
                 </motion.div>
 
-                {/* Skill Categories */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {skillCategories.map((category, index) => (
                         <motion.div

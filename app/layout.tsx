@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "個人ポートフォリオ | フルスタック開発者",
+  title: "Evren Balik | フルスタック開発者",
   description: "フルスタック開発者としてのスキルと経験を紹介するモダンな個人ポートフォリオ",
   keywords: ["ポートフォリオ", "開発者", "ウェブ開発", "フルスタック", "React", "Next.js"],
-  authors: [{ name: "Your Name" }],
-  creator: "Your Name",
+  authors: [{ name: "Evren Balik" }],
+  creator: "Evren Balik",
 };
 
 export default function RootLayout({

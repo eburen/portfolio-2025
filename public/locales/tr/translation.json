@@ -33,34 +33,18 @@
         "title": "Son Projeler",
         "description": "En son çalışmalarımı inceleyin. Bu projeler, teknik yeteneklerimi ve problem çözme becerilerimi göstermektedir.",
         "viewAll": "Tümünü Gör",
-        "liveDemo": "Canlı Demo",
-        "sourceCode": "Kaynak Kodu",
         "techStack": "Teknoloji Yığını:",
         "header": "Çalışmalarım",
         "subheader": "Son çalışmalarımı ve kişisel projelerimi sergiliyorum",
-        "filter": {
-            "all": "Tümü",
-            "featured": "Öne Çıkan",
-            "web": "Web",
-            "mobile": "Mobil",
-            "backend": "Arka Uç"
-        },
-        "sort": {
-            "label": "Sırala:",
-            "latest": "En Yeni",
-            "oldest": "En Eski"
-        },
         "projectDetails": {
             "overview": "Genel Bakış",
             "technologies": "Teknolojiler",
-            "viewLive": "Canlı Gör",
-            "viewCode": "Kodu Gör",
             "close": "Kapat"
         }
     },
     "about": {
         "title": "Hakkımda",
-        "subtitle": "3 yıldan fazla web uygulamaları geliştirme deneyimine sahip tutkulu bir fullstack geliştiriciyim. Uzmanlık alanım .NET çerçevesi ve JS (Typescript, React, Vue) kullanarak geliştirmedir.",
+        "subtitle": "3 yıldan fazla web uygulamaları geliştirme deneyimine sahip tutkulu bir fullstack geliştiriciyim. Uzmanlık alanım .NET çerçevesi ve JS (Typescript, React) kullanarak geliştirmedir.",
         "description": "Temiz, verimli ve kullanıcı dostu uygulamalar yaratmak konusunda tutkulu biriyim. Kodlama yapmadığım zamanlarda, yeni teknolojileri keşfetmeyi veya açık hava aktivitelerine katılmayı seviyorum.",
         "downloadResume": "Özgeçmişi İndir",
         "linkedin": "LinkedIn",
