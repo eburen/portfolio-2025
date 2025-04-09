@@ -45,3 +45,11 @@ next-env.d.ts
 
 *.mdc
 node_modules
+
+# cursor
+.cursor/rules/*.mdc
+.cursor/rules/*.json
+.cursor/rules/*.md
+.cursor/rules/*.yaml
+.cursor/rules/*.yml
+.cursor/rules/*.json
