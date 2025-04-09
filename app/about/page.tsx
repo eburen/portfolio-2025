@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FiCalendar, FiAward, FiLinkedin } from "react-icons/fi";
+import { FiCalendar, FiAward } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
 
 export default function AboutPage() {

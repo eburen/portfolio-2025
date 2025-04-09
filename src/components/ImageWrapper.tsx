@@ -11,6 +11,7 @@ export default function ImageWrapper({
     layout,
     objectFit,
     style,
+    alt = '',
     ...props
 }: ExtendedImageProps) {
     const updatedStyle = { ...style };
@@ -25,5 +26,5 @@ export default function ImageWrapper({
         updatedStyle.objectFit = objectFit;
     }
 
-    return <Image style={updatedStyle} {...props} />;
+    return <Image style={updatedStyle} alt={alt} {...props} />;
 } 

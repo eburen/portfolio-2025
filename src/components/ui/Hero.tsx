@@ -32,19 +32,6 @@ export default function Hero() {
         }
     };
 
-    const socialLinks = [
-        {
-            icon: FiGithub,
-            href: "https://github.com/evren-balik",
-            label: "social.github"
-        },
-        {
-            icon: FiLinkedin,
-            href: "https://linkedin.com/in/evren-balik/",
-            label: "social.linkedin"
-        }
-    ];
-
     return (
         <section className="relative overflow-hidden py-20 sm:py-32">
             {/* Background pattern with animation */}

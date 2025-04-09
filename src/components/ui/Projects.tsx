@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FiExternalLink, FiGithub, FiTag, FiChevronRight } from "react-icons/fi";
+import { FiExternalLink, FiGithub, FiChevronRight } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 
 // Sample project data - replace with your own projects
@@ -76,7 +76,7 @@ type FilterType = "all" | "featured" | "web" | "mobile" | "backend";
 
 export default function Projects() {
     const { t } = useTranslation();
-    const [filter, setFilter] = useState<FilterType>("all");
+    const [filter] = useState<FilterType>("all");
 
     // Filter projects based on selection
     const filteredProjects = () => {
@@ -161,7 +161,7 @@ export default function Projects() {
                     whileInView="visible"
                     viewport={{ once: true }}
                 >
-                    {filteredProjects().map((project, index) => (
+                    {filteredProjects().map((project) => (
                         <motion.div
                             key={project.id}
                             className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden h-full flex flex-col"
