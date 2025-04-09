@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { FiExternalLink, FiGithub, FiTag, FiCalendar, FiCode, FiLayers } from "react-icons/fi";
+import { useTranslation } from 'react-i18next';
 
 type Project = {
     id: number;
@@ -80,7 +81,7 @@ const projects: Project[] = [
         id: 5,
         title: "Portfolio Website",
         description: "A personal portfolio website built with modern technologies to showcase projects and skills.",
-        longDescription: "This portfolio website showcases my projects and skills in web development. It features smooth animations, dark mode support, responsive design, and a contact form. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion for animations.",
+        longDescription: "This portfolio website showcases my projects and skills in web development. It features smooth animations, dark mode support, and responsive design. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion for animations.",
         image: "/images/project5.jpg",
         tags: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
         category: "web",
@@ -131,6 +132,7 @@ const projects: Project[] = [
 ];
 
 export default function ProjectsPage() {
+    const { t } = useTranslation();
     const [filter, setFilter] = useState<FilterType>("all");
     const [sort, setSort] = useState<SortType>("latest");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -171,6 +173,15 @@ export default function ProjectsPage() {
 
     const filteredProjects = getFilteredProjects();
 
+    // Filter labels
+    const filterLabels: Record<FilterType, string> = {
+        all: t('projects.filter.all'),
+        featured: t('projects.filter.featured'),
+        web: t('projects.filter.web'),
+        mobile: t('projects.filter.mobile'),
+        backend: t('projects.filter.backend')
+    };
+
     return (
         <div className="py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -182,7 +193,7 @@ export default function ProjectsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        My <span className="text-blue-600 dark:text-blue-500">Projects</span>
+                        {t('projects.header')} <span className="text-blue-600 dark:text-blue-500"></span>
                     </motion.h1>
                     <motion.p
                         className="text-xl text-gray-600 dark:text-gray-400 mb-8"
@@ -190,7 +201,7 @@ export default function ProjectsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                     >
-                        A selection of my recent work and personal projects
+                        {t('projects.subheader')}
                     </motion.p>
 
                     {/* Filters and Sorting */}
@@ -208,21 +219,21 @@ export default function ProjectsPage() {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
-                                    {filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+                                    {filterLabels[filterType as FilterType]}
                                 </motion.button>
                             ))}
                         </div>
 
                         {/* Sort Options */}
                         <div className="flex items-center justify-center">
-                            <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">Sort:</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">{t('projects.sort.label')}</span>
                             <select
                                 value={sort}
                                 onChange={(e) => setSort(e.target.value as SortType)}
                                 className="px-3 py-2 rounded-md text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-none focus:ring-2 focus:ring-blue-500"
                             >
-                                <option value="latest">Latest First</option>
-                                <option value="oldest">Oldest First</option>
+                                <option value="latest">{t('projects.sort.latest')}</option>
+                                <option value="oldest">{t('projects.sort.oldest')}</option>
                             </select>
                         </div>
                     </div>
@@ -248,7 +259,8 @@ export default function ProjectsPage() {
                                 whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
                                 onClick={() => setSelectedProject(project)}
                             >
-                                <div className="relative h-48 sm:h-56 overflow-hidden">
+                                {/* Project Image */}
+                                <div className="relative w-full h-48 overflow-hidden">
                                     <Image
                                         src={project.image}
                                         alt={project.title}
@@ -257,62 +269,69 @@ export default function ProjectsPage() {
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
                                     {project.featured && (
-                                        <div className="absolute top-3 right-3 bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
-                                            Featured
+                                        <div className="absolute top-2 right-2">
+                                            <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                                                {t('projects.filter.featured')}
+                                            </span>
                                         </div>
                                     )}
-                                    <div className="absolute top-3 left-3 bg-black/60 text-white text-xs px-2 py-1 rounded-full flex items-center">
-                                        <FiCalendar className="mr-1" />
-                                        {new Date(project.date).toLocaleDateString('en-US', {
-                                            year: 'numeric',
-                                            month: 'short'
-                                        })}
-                                    </div>
                                 </div>
 
+                                {/* Project Content */}
                                 <div className="p-6 flex-1 flex flex-col">
-                                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                                        <FiCalendar className="mr-1" />
+                                        <span>{new Date(project.date).toLocaleDateString()}</span>
+                                        <span className="mx-2">•</span>
+                                        <FiTag className="mr-1" />
+                                        <span>{project.category}</span>
+                                    </div>
+
+                                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
+                                        {project.title}
+                                    </h3>
                                     <p className="text-gray-600 dark:text-gray-400 mb-4 flex-1">
                                         {project.description}
                                     </p>
 
+                                    {/* Project Tags */}
                                     <div className="flex flex-wrap gap-2 mb-4">
                                         {project.tags.slice(0, 3).map((tag, index) => (
                                             <span
                                                 key={index}
-                                                className="inline-flex items-center text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
+                                                className="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full"
                                             >
-                                                <FiTag className="w-3 h-3 mr-1" />
                                                 {tag}
                                             </span>
                                         ))}
                                         {project.tags.length > 3 && (
-                                            <span className="inline-flex items-center text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full">
+                                            <span className="text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full">
                                                 +{project.tags.length - 3}
                                             </span>
                                         )}
                                     </div>
 
-                                    <div className="flex space-x-3">
+                                    {/* Project Links */}
+                                    <div className="flex space-x-2 mt-auto">
                                         <a
                                             href={project.liveUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                                            className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors flex-1"
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                            <FiExternalLink className="w-4 h-4 mr-1" />
-                                            Live Demo
+                                            <FiExternalLink className="mr-2" />
+                                            {t('projects.liveDemo')}
                                         </a>
                                         <a
                                             href={project.githubUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+                                            className="flex items-center justify-center px-4 py-2 bg-gray-700 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors flex-1"
                                             onClick={(e) => e.stopPropagation()}
                                         >
-                                            <FiGithub className="w-4 h-4 mr-1" />
-                                            Code
+                                            <FiGithub className="mr-2" />
+                                            {t('projects.sourceCode')}
                                         </a>
                                     </div>
                                 </div>
@@ -321,112 +340,101 @@ export default function ProjectsPage() {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Empty State */}
-                {filteredProjects.length === 0 && (
-                    <div className="text-center py-20">
-                        <FiLayers className="w-12 h-12 mx-auto text-gray-400" />
-                        <h3 className="mt-4 text-xl font-medium">No projects found</h3>
-                        <p className="mt-2 text-gray-600 dark:text-gray-400">
-                            Try changing your filter or check back later for new projects.
-                        </p>
-                    </div>
-                )}
-
-                {/* Project Details Modal */}
-                <AnimatePresence>
-                    {selectedProject && (
+                {/* Project Modal */}
+                {selectedProject && (
+                    <div
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
+                        onClick={() => setSelectedProject(null)}
+                    >
                         <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 sm:p-6 z-50"
-                            onClick={() => setSelectedProject(null)}
+                            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-800 rounded-xl shadow-2xl"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ type: "spring", damping: 20 }}
-                                className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <div className="relative h-56 sm:h-72 md:h-80 w-full">
-                                    <Image
-                                        src={selectedProject.image}
-                                        alt={selectedProject.title}
-                                        fill
-                                        className="object-cover"
-                                        sizes="(max-width: 1024px) 100vw, 1024px"
-                                    />
-                                    <button
-                                        className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
-                                        onClick={() => setSelectedProject(null)}
-                                    >
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
+                            <div className="relative h-72 md:h-96">
+                                <Image
+                                    src={selectedProject.image}
+                                    alt={selectedProject.title}
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, 800px"
+                                    priority
+                                />
+                                <button
+                                    onClick={() => setSelectedProject(null)}
+                                    className="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-colors"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div className="p-6 md:p-8">
+                                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                                    <FiCalendar className="mr-1" />
+                                    <span>{new Date(selectedProject.date).toLocaleDateString()}</span>
+                                    <span className="mx-2">•</span>
+                                    <FiTag className="mr-1" />
+                                    <span>{selectedProject.category}</span>
                                 </div>
 
-                                <div className="p-6 sm:p-8">
-                                    <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
-                                        <h2 className="text-2xl sm:text-3xl font-bold">{selectedProject.title}</h2>
-                                        <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                                            <FiCalendar className="mr-2" />
-                                            {new Date(selectedProject.date).toLocaleDateString('en-US', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric'
-                                            })}
-                                        </div>
-                                    </div>
+                                <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">{selectedProject.title}</h2>
 
-                                    <p className="text-gray-600 dark:text-gray-400 mb-6">
+                                <div className="mb-6">
+                                    <h3 className="text-xl font-semibold mb-2 flex items-center">
+                                        <FiLayers className="mr-2" />
+                                        {t('projects.projectDetails.overview')}
+                                    </h3>
+                                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                                         {selectedProject.longDescription}
                                     </p>
+                                </div>
 
-                                    <div className="mb-6">
-                                        <h3 className="text-lg font-semibold mb-2 flex items-center">
-                                            <FiCode className="mr-2" />
-                                            Technologies Used
-                                        </h3>
-                                        <div className="flex flex-wrap gap-2">
-                                            {selectedProject.tags.map((tag, index) => (
-                                                <span
-                                                    key={index}
-                                                    className="inline-flex items-center text-sm px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
-                                                >
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="flex flex-col sm:flex-row gap-4">
-                                        <a
-                                            href={selectedProject.liveUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                                        >
-                                            <FiExternalLink className="mr-2" />
-                                            Visit Live Site
-                                        </a>
-                                        <a
-                                            href={selectedProject.githubUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex-1 inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                                        >
-                                            <FiGithub className="mr-2" />
-                                            View Source Code
-                                        </a>
+                                <div className="mb-6">
+                                    <h3 className="text-xl font-semibold mb-2 flex items-center">
+                                        <FiCode className="mr-2" />
+                                        {t('projects.projectDetails.technologies')}
+                                    </h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {selectedProject.tags.map((tag, index) => (
+                                            <span
+                                                key={index}
+                                                className="text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
                                     </div>
                                 </div>
-                            </motion.div>
+
+                                <div className="flex space-x-4">
+                                    <a
+                                        href={selectedProject.liveUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex-1 flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition-colors"
+                                    >
+                                        <FiExternalLink className="mr-2" />
+                                        {t('projects.projectDetails.viewLive')}
+                                    </a>
+                                    <a
+                                        href={selectedProject.githubUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex-1 flex items-center justify-center px-6 py-3 bg-gray-700 text-white font-medium rounded-md hover:bg-gray-800 transition-colors"
+                                    >
+                                        <FiGithub className="mr-2" />
+                                        {t('projects.projectDetails.viewCode')}
+                                    </a>
+                                </div>
+                            </div>
                         </motion.div>
-                    )}
-                </AnimatePresence>
+                    </div>
+                )}
             </div>
         </div>
     );

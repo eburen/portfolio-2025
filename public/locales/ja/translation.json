@@ -1,0 +1,80 @@
+{
+    "navigation": {
+        "home": "ホーム",
+        "about": "私について",
+        "projects": "プロジェクト",
+        "skills": "スキル"
+    },
+    "hero": {
+        "title": "インパクトのある",
+        "titleHighlight": "最新のウェブ体験",
+        "titleEnd": "を構築する",
+        "jobTitle": "フルスタック開発者",
+        "description": "私は情熱的なフルスタック開発者であり、.NET、Javascript、Typescript、React、Next.js、Vueの技術を用いて、レスポンシブでユーザーフレンドリーなウェブアプリケーションを作成することを専門としています。",
+        "viewWork": "作品を見る"
+    },
+    "skills": {
+        "title": "スキルと技術",
+        "description": "私はフルスタック開発の幅広い技術スタックを習得しています。常に新しい技術を学び、最新のツールやフレームワークに対応しています。",
+        "frontend": "フロントエンド",
+        "backend": "バックエンド",
+        "database": "データベース",
+        "devops": "DevOps",
+        "design": "デザイン"
+    },
+    "projects": {
+        "title": "最近のプロジェクト",
+        "description": "私の最新の作品をご覧ください。これらのプロジェクトは、私の技術的能力と問題解決スキルを示しています。",
+        "viewAll": "すべて見る",
+        "liveDemo": "ライブデモ",
+        "sourceCode": "ソースコード",
+        "techStack": "使用技術:",
+        "header": "私の作品",
+        "subheader": "最近の作品と個人プロジェクトの紹介",
+        "filter": {
+            "all": "すべて",
+            "featured": "注目",
+            "web": "ウェブ",
+            "mobile": "モバイル",
+            "backend": "バックエンド"
+        },
+        "sort": {
+            "label": "並べ替え:",
+            "latest": "最新順",
+            "oldest": "古い順"
+        },
+        "projectDetails": {
+            "overview": "概要",
+            "technologies": "使用技術",
+            "viewLive": "実際に見る",
+            "viewCode": "コードを見る",
+            "close": "閉じる"
+        }
+    },
+    "about": {
+        "title": "私について",
+        "subtitle": "私は情熱的なフルスタック開発者であり、3年以上ウェブアプリケーションの構築経験があります。専門分野は.NETフレームワーク＆JS(Typescript,React,Vue)を使用した開発です。",
+        "description": "クリーンで効率的、そしてユーザーフレンドリーなアプリケーションを作成することに情熱を持っています。コーディングをしていないときは、新しい技術を探求したり、アウトドア活動を楽しんだりしています。",
+        "downloadResume": "履歴書をダウンロード",
+        "linkedin": "LinkedIn",
+        "experience": "職務経験",
+        "education": "学歴と資格",
+        "interests": "趣味・関心",
+        "languageSkills": "言語スキル",
+        "english": "英語",
+        "japanese": "日本語",
+        "turkish": "トルコ語",
+        "chinese": "中国語",
+        "businessLevel": "ビジネスレベル",
+        "native": "ネイティブ",
+        "beginnerLevel": "初級レベル"
+    },
+    "footer": {
+        "rights": "© 2025 All rights reserved.",
+        "madeWith": "Made with ❤️"
+    },
+    "social": {
+        "github": "GitHub",
+        "linkedin": "LinkedIn"
+    }
+}

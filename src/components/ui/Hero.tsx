@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { FiArrowRight } from "react-icons/fi";
+import { FiArrowRight, FiGithub, FiLinkedin } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 
 export default function Hero() {
@@ -31,6 +31,19 @@ export default function Hero() {
             repeatType: "reverse" as const
         }
     };
+
+    const socialLinks = [
+        {
+            icon: FiGithub,
+            href: "https://github.com/evren-balik",
+            label: "social.github"
+        },
+        {
+            icon: FiLinkedin,
+            href: "https://linkedin.com/in/evren-balik/",
+            label: "social.linkedin"
+        }
+    ];
 
     return (
         <section className="relative overflow-hidden py-20 sm:py-32">
@@ -122,7 +135,7 @@ export default function Hero() {
                         </motion.p>
 
                         <motion.div
-                            className="flex flex-wrap gap-4"
+                            className="flex flex-wrap gap-4 mb-8 lg:mb-0"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5, duration: 0.5 }}
@@ -138,27 +151,18 @@ export default function Hero() {
                                     </motion.span>
                                 </Link>
                             </motion.div>
-
-                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <Link
-                                    href="/contact"
-                                    className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-blue-600 dark:text-blue-400 bg-transparent border border-blue-600 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-md transition-all duration-300"
-                                >
-                                    {t('hero.contactMe')}
-                                </Link>
-                            </motion.div>
                         </motion.div>
                     </motion.div>
 
                     {/* Right column - Image with animations */}
                     <motion.div
-                        className="relative lg:h-[600px] rounded-lg overflow-hidden"
+                        className="relative h-72 sm:h-80 md:h-96 lg:h-[600px] rounded-lg overflow-hidden"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.4, duration: 0.6 }}
                     >
                         <motion.div
-                            className="aspect-w-4 aspect-h-3 lg:aspect-none relative h-full"
+                            className="relative h-full w-full"
                             animate={{ y: [0, -10, 0] }}
                             transition={{
                                 duration: 4,
@@ -166,19 +170,17 @@ export default function Hero() {
                                 repeatType: "reverse"
                             }}
                         >
-                            <div className="relative w-full h-full">
-                                {/* Use the personal photo */}
-                                <Image
-                                    src="/images/devPc.jpg"
-                                    alt="Developer portrait"
-                                    fill
-                                    priority
-                                    className="object-cover rounded-lg"
-                                    style={{
-                                        objectPosition: 'center',
-                                    }}
-                                />
-                            </div>
+                            <Image
+                                src="/images/devPc.jpg"
+                                alt="Developer portrait"
+                                fill
+                                priority
+                                className="object-cover rounded-lg"
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
+                                style={{
+                                    objectPosition: 'center',
+                                }}
+                            />
 
                             <motion.div
                                 className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-transparent rounded-lg"
@@ -193,7 +195,7 @@ export default function Hero() {
                                     duration: 5,
                                     repeat: Infinity
                                 }}
-                            ></motion.div>
+                            />
                         </motion.div>
                     </motion.div>
                 </div>

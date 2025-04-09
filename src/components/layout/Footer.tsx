@@ -2,30 +2,20 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FiGithub, FiLinkedin, FiTwitter, FiMail } from "react-icons/fi";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 
 const socialLinks = [
     {
         icon: FiGithub,
-        href: "https://github.com/yourusername",
-        label: "GitHub"
+        href: "https://github.com/eburen",
+        label: "social.github"
     },
     {
         icon: FiLinkedin,
-        href: "https://linkedin.com/in/yourusername",
-        label: "LinkedIn"
-    },
-    {
-        icon: FiTwitter,
-        href: "https://twitter.com/yourusername",
-        label: "Twitter"
-    },
-    {
-        icon: FiMail,
-        href: "mailto:your.email@example.com",
-        label: "Email"
-    },
+        href: "https://linkedin.com/in/evren-balik/",
+        label: "social.linkedin"
+    }
 ];
 
 export default function Footer() {
@@ -54,7 +44,8 @@ export default function Footer() {
                                     href={link.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label={link.label}
+                                    aria-label={t(link.label)}
+                                    title={t(link.label)}
                                     className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                                     whileHover={{ scale: 1.2, rotate: [0, 10, -10, 0] }}
                                     whileTap={{ scale: 0.95 }}
@@ -67,19 +58,19 @@ export default function Footer() {
                     </div>
 
                     <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4 text-sm text-gray-600 dark:text-gray-400">
+                        <Link href="/" className="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                            {t('navigation.home')}
+                        </Link>
                         <Link href="/about" className="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                             {t('navigation.about')}
                         </Link>
                         <Link href="/projects" className="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                             {t('navigation.projects')}
                         </Link>
-                        <Link href="/contact" className="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
-                            {t('navigation.contact')}
-                        </Link>
                     </div>
 
                     <div className="mt-6 text-sm text-gray-500 dark:text-gray-500">
-                        <p>{t('footer.rights').replace('2024', currentYear.toString())}</p>
+                        <p>{t('footer.rights').replace('2025', currentYear.toString())}</p>
                         <div className="flex items-center justify-center mt-2">
                             <span>{t('footer.madeWith')} </span>
                             <motion.span

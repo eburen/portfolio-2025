@@ -2,44 +2,41 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FiDownload, FiCalendar, FiMapPin, FiAward } from "react-icons/fi";
+import { FiCalendar, FiAward, FiLinkedin } from "react-icons/fi";
+import { useTranslation } from 'react-i18next';
 
 export default function AboutPage() {
+    const { t } = useTranslation();
+
     // Experience data
     const experiences = [
         {
-            title: "Senior Frontend Developer",
-            company: "Tech Solutions Inc.",
-            period: "2022 - Present",
-            description: "Led a team of developers to build scalable web applications with React, Next.js, and TypeScript. Implemented CI/CD pipelines and improved performance by 40%."
+            title: "SE",
+            company: "Ｗ２株式会社",
+            period: "2022 - 2023",
+            description: "Eーコマースのソリューションを開発と保守を行っていました。"
         },
         {
-            title: "Frontend Developer",
-            company: "Creative Web Agency",
-            period: "2020 - 2022",
-            description: "Developed responsive websites and web applications for various clients. Worked with React, Redux, and modern CSS frameworks."
-        },
-        {
-            title: "Junior Web Developer",
-            company: "StartUp Innovations",
-            period: "2018 - 2020",
-            description: "Built and maintained websites using JavaScript, HTML, and CSS. Collaborated with the design team to implement UI/UX improvements."
+            title: "SE",
+            company: "Ｍａｒｖｅｌ株式会社",
+            period: "2023 - 現在",
+            description: "顧客のニーズに応じてソリューションを開発しています。"
         }
     ];
 
     // Education data
     const education = [
         {
-            degree: "Master of Computer Science",
-            institution: "University of Technology",
-            period: "2016 - 2018",
-            description: "Specialized in web technologies and software engineering with a focus on frontend development."
+            degree: "ITビジネス",
+            institution: "専門学校スクール・オフ・ビジネス",
+            period: "2020 - 2022",
+            description: "IT・ビジネス関連の専門学校を卒業しました。"
         },
         {
-            degree: "Bachelor of Computer Science",
-            institution: "State University",
-            period: "2012 - 2016",
-            description: "Fundamental studies in computer science, algorithms, data structures, and web development."
+            degree: "高校",
+            institution: "OZEL C.O.S.B M.T.A.L",
+            period: "2014 - 2018",
+            description: "メカトロニクス系の高校を卒業しました。"
         }
     ];
 
@@ -55,27 +52,14 @@ export default function AboutPage() {
                         transition={{ duration: 0.5 }}
                     >
                         <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-                            About <span className="text-blue-600 dark:text-blue-500">Me</span>
+                            {t('about.title')} <span className="text-blue-600 dark:text-blue-500">Me</span>
                         </h1>
                         <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                            I'm a passionate Full Stack Developer with over 5 years of experience in building
-                            web applications. My expertise includes frontend technologies like React and Next.js,
-                            as well as backend development with Node.js and various databases.
+                            {t('about.subtitle')}
                         </p>
                         <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                            I'm dedicated to creating clean, efficient, and user-friendly applications that solve
-                            real-world problems. When I'm not coding, you can find me exploring new technologies,
-                            contributing to open-source projects, or enjoying outdoor activities.
+                            {t('about.description')}
                         </p>
-                        <a
-                            href="/resume.pdf"
-                            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <FiDownload className="mr-2" />
-                            Download Resume
-                        </a>
                     </motion.div>
 
                     <motion.div
@@ -95,8 +79,9 @@ export default function AboutPage() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             <div className="absolute bottom-0 left-0 p-6 text-white">
-                                <h3 className="text-2xl font-bold">Your Name</h3>
-                                <p className="text-white/90">Full Stack Developer</p>
+                                <h3 className="text-2xl font-bold">Evren BALIK</h3>
+                                <h2 className="text-lg font-bold">バリク・エブレン</h2>
+                                <p className="text-white/90">フルスタック開発者</p>
                             </div>
                         </div>
                     </motion.div>
@@ -109,7 +94,7 @@ export default function AboutPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                    {["JavaScript", "React", "Next.js", "Node.js", "TypeScript", "Tailwind CSS"].map((skill, index) => (
+                    {["JavaScript", "React", "Next.js", "Node.js", "TypeScript", "Tailwind CSS", "Vue", "Bootstrap", ".NET / C#"].map((skill, index) => (
                         <div
                             key={index}
                             className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow"
@@ -117,6 +102,62 @@ export default function AboutPage() {
                             <h3 className="font-bold">{skill}</h3>
                         </div>
                     ))}
+                </motion.div>
+
+                {/* Language Skills */}
+                <motion.div
+                    className="mb-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                    <motion.h2
+                        className="text-3xl font-bold mb-8 text-center"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <span className="text-blue-600 dark:text-blue-500">{t('about.languageSkills')}</span>
+                    </motion.h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <motion.div
+                            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                        >
+                            <h3 className="text-xl font-bold mb-2">{t('about.english')}</h3>
+                            <p className="text-gray-600 dark:text-gray-400">{t('about.businessLevel')}</p>
+                        </motion.div>
+                        <motion.div
+                            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                            <h3 className="text-xl font-bold mb-2">{t('about.japanese')}</h3>
+                            <p className="text-gray-600 dark:text-gray-400">{t('about.businessLevel')}</p>
+                        </motion.div>
+                        <motion.div
+                            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                        >
+                            <h3 className="text-xl font-bold mb-2">{t('about.turkish')}</h3>
+                            <p className="text-gray-600 dark:text-gray-400">{t('about.native')}</p>
+                        </motion.div>
+                        <motion.div
+                            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
+                        >
+                            <h3 className="text-xl font-bold mb-2">{t('about.chinese')}</h3>
+                            <p className="text-gray-600 dark:text-gray-400">{t('about.beginnerLevel')}</p>
+                        </motion.div>
+                    </div>
                 </motion.div>
 
                 {/* Experience */}
@@ -127,7 +168,7 @@ export default function AboutPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        Professional <span className="text-blue-600 dark:text-blue-500">Experience</span>
+                        {t('about.experience')} <span className="text-blue-600 dark:text-blue-500"></span>
                     </motion.h2>
 
                     <div className="space-y-8">
@@ -167,7 +208,7 @@ export default function AboutPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <span className="text-blue-600 dark:text-blue-500">Education</span> & Qualifications
+                        <span className="text-blue-600 dark:text-blue-500">{t('about.education')}</span>
                     </motion.h2>
 
                     <div className="space-y-8">
@@ -207,7 +248,7 @@ export default function AboutPage() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
                     <h2 className="text-3xl font-bold mb-6 text-center">
-                        Personal <span className="text-blue-600 dark:text-blue-500">Interests</span>
+                        {t('about.interests')} <span className="text-blue-600 dark:text-blue-500"></span>
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {["Coding", "Hiking", "Photography", "Reading"].map((interest, index) => (
