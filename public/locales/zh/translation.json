@@ -1,0 +1,89 @@
+{
+    "navigation": {
+        "home": "首页",
+        "about": "关于我",
+        "projects": "项目",
+        "skills": "技能"
+    },
+    "hero": {
+        "title": "打造",
+        "titleHighlight": "现代网络体验",
+        "titleEnd": "带来影响",
+        "jobTitle": "全栈开发者",
+        "description": "我是一位热情的全栈开发者，专注于使用.NET、Javascript、Typescript、React、Next.js和Vue创建响应式和用户友好的网络应用。",
+        "viewWork": "查看我的作品"
+    },
+    "skills": {
+        "title": "技能与技术",
+        "description": "我掌握了全栈开发的各种技术。我始终在学习新技术并跟进最新的工具和框架。",
+        "frontend": "前端",
+        "backend": "后端",
+        "database": "数据库",
+        "devops": "DevOps",
+        "design": "设计",
+        "documentation": "文档",
+        "documentItems": {
+            "detailedDesign": "详细设计文档",
+            "internalExternalDesign": "内部与外部设计规范",
+            "specifications": "需求规格说明书",
+            "testingDocs": "单元、集成和系统测试文档"
+        }
+    },
+    "projects": {
+        "title": "近期项目",
+        "description": "查看我的最新作品。这些项目展示了我的技术能力和解决问题的技能。",
+        "viewAll": "查看全部",
+        "liveDemo": "在线演示",
+        "sourceCode": "源代码",
+        "techStack": "技术栈：",
+        "header": "我的作品",
+        "subheader": "展示我的近期作品和个人项目",
+        "filter": {
+            "all": "全部",
+            "featured": "精选",
+            "web": "网页",
+            "mobile": "移动端",
+            "backend": "后端"
+        },
+        "sort": {
+            "label": "排序方式：",
+            "latest": "最新",
+            "oldest": "最早"
+        },
+        "projectDetails": {
+            "overview": "概述",
+            "technologies": "技术",
+            "viewLive": "查看演示",
+            "viewCode": "查看代码",
+            "close": "关闭"
+        }
+    },
+    "about": {
+        "title": "关于我",
+        "subtitle": "我是一位热情的全栈开发者，拥有超过3年构建网络应用的经验。我的专长是使用.NET框架和JS（Typescript、React、Vue）进行开发。",
+        "description": "我热衷于创建简洁、高效和用户友好的应用程序。当我不在编码时，我喜欢探索新技术或参与户外活动。",
+        "downloadResume": "下载简历",
+        "linkedin": "领英",
+        "experience": "工作经验",
+        "education": "教育与证书",
+        "interests": "兴趣爱好",
+        "languageSkills": "语言技能"
+    },
+    "languages": {
+        "english": "英语",
+        "japanese": "日语",
+        "turkish": "土耳其语",
+        "chinese": "中文",
+        "businessLevel": "商务水平",
+        "native": "母语",
+        "beginnerLevel": "初学者水平"
+    },
+    "footer": {
+        "rights": "© 2025 版权所有。",
+        "madeWith": "用❤️制作"
+    },
+    "social": {
+        "github": "GitHub",
+        "linkedin": "领英"
+    }
+}

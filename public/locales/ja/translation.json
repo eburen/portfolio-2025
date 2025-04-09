@@ -20,7 +20,14 @@
         "backend": "バックエンド",
         "database": "データベース",
         "devops": "DevOps",
-        "design": "デザイン"
+        "design": "デザイン",
+        "documentation": "ドキュメント",
+        "documentItems": {
+            "detailedDesign": "詳細設計書",
+            "internalExternalDesign": "内部・外部設計書",
+            "specifications": "仕様書",
+            "testingDocs": "UT・IT・ST仕様書とテスト実施"
+        }
     },
     "projects": {
         "title": "最近のプロジェクト",
@@ -60,7 +67,9 @@
         "experience": "職務経験",
         "education": "学歴と資格",
         "interests": "趣味・関心",
-        "languageSkills": "言語スキル",
+        "languageSkills": "言語スキル"
+    },
+    "languages": {
         "english": "英語",
         "japanese": "日本語",
         "turkish": "トルコ語",

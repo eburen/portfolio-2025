@@ -1,0 +1,89 @@
+{
+    "navigation": {
+        "home": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "skills": "Skills"
+    },
+    "hero": {
+        "title": "Building",
+        "titleHighlight": "modern web experiences",
+        "titleEnd": "with impact",
+        "jobTitle": "Fullstack Developer",
+        "description": "I'm a passionate fullstack developer specializing in creating responsive and user-friendly web applications using .NET, Javascript, Typescript, React, Next.js, and Vue.",
+        "viewWork": "View My Work"
+    },
+    "skills": {
+        "title": "Skills & Technologies",
+        "description": "I've mastered a wide range of technologies for fullstack development. I'm always learning new technologies and keeping up with the latest tools and frameworks.",
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "database": "Database",
+        "devops": "DevOps",
+        "design": "Design",
+        "documentation": "Documentation",
+        "documentItems": {
+            "detailedDesign": "Detailed Design Documents",
+            "internalExternalDesign": "Internal & External Design Specifications",
+            "specifications": "Requirements Specifications",
+            "testingDocs": "Unit, Integration & System Test Documentation"
+        }
+    },
+    "projects": {
+        "title": "Recent Projects",
+        "description": "Check out my latest work. These projects showcase my technical abilities and problem-solving skills.",
+        "viewAll": "View All",
+        "liveDemo": "Live Demo",
+        "sourceCode": "Source Code",
+        "techStack": "Tech Stack:",
+        "header": "My Work",
+        "subheader": "Showcasing my recent work and personal projects",
+        "filter": {
+            "all": "All",
+            "featured": "Featured",
+            "web": "Web",
+            "mobile": "Mobile",
+            "backend": "Backend"
+        },
+        "sort": {
+            "label": "Sort by:",
+            "latest": "Latest",
+            "oldest": "Oldest"
+        },
+        "projectDetails": {
+            "overview": "Overview",
+            "technologies": "Technologies",
+            "viewLive": "View Live",
+            "viewCode": "View Code",
+            "close": "Close"
+        }
+    },
+    "about": {
+        "title": "About Me",
+        "subtitle": "I'm a passionate fullstack developer with over 3 years of experience building web applications. My specialization is development using .NET framework & JS (Typescript, React, Vue).",
+        "description": "I'm passionate about creating clean, efficient, and user-friendly applications. When I'm not coding, I enjoy exploring new technologies or engaging in outdoor activities.",
+        "downloadResume": "Download Resume",
+        "linkedin": "LinkedIn",
+        "experience": "Work Experience",
+        "education": "Education & Certifications",
+        "interests": "Interests & Hobbies",
+        "languageSkills": "Language Skills"
+    },
+    "languages": {
+        "english": "English",
+        "japanese": "Japanese",
+        "turkish": "Turkish",
+        "chinese": "Chinese",
+        "businessLevel": "Business Level",
+        "native": "Native",
+        "beginnerLevel": "Beginner Level"
+    },
+    "footer": {
+        "rights": "© 2025 All rights reserved.",
+        "madeWith": "Made with ❤️"
+    },
+    "social": {
+        "github": "GitHub",
+        "linkedin": "LinkedIn"
+    }
+}

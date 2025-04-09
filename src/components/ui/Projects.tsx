@@ -4,70 +4,78 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FiExternalLink, FiGithub, FiChevronRight } from "react-icons/fi";
+import { FiExternalLink, FiGithub, FiChevronRight, FiCalendar, FiBriefcase } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 
-// Sample project data - replace with your own projects
+// Project data - replace with your own projects
 const projects = [
     {
         id: 1,
-        title: "E-commerce Platform",
-        description: "A full-stack e-commerce platform with payment processing, user authentication, and product management.",
-        image: "/images/project1.jpg",
-        tags: ["React", "Node.js", "MongoDB", "Stripe", "Redux"],
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: true
+        title: "保険関連のウェブアプリ開発",
+        description: "大手保険会社向けウォーターフォール開発。複雑な業務ロジックを持つウェブアプリケーションの開発と既存レガシーシステムの最新バージョンおよび開発技術への移行を担当。",
+        image: "/images/devPc.jpg",
+        period: "2023/12 - 2025/06",
+        position: "開発エンジニア",
+        responsibilities: [
+            "外部設計・内部設計の作成",
+            "コーディングおよびUT・IT・STのテスト設計と実施",
+            "エラー処理の実装および複数の業務フローの担当",
+            "技術プロジェクトのバグ改修",
+            "複雑な業務ロジックを分析し、設計に落とし込む力",
+            "新旧技術の差を考慮したシステム設計および開発",
+            "ユーザー視点を意識したテスト仕様書の作成と効率的なテスト実施能力",
+            "プロジェクト全体を俯瞰し、自己完結型の開発を進める自己管理能力",
+            "レガシーシステム特有の制約を克服し、最新技術と統合する変換的アプローチ"
+        ],
+        tags: ["ASP.NET MVC", "C#", "Windows", "TFS/DevOps", "詳細設計書", "内部・外部設計書", "テスト仕様書"],
+        liveUrl: "",
+        githubUrl: "",
+        featured: true,
+        category: "web"
     },
     {
         id: 2,
-        title: "Task Management App",
-        description: "A collaborative task management application with real-time updates and team collaboration features.",
-        image: "/images/project2.jpg",
-        tags: ["React", "Firebase", "Tailwind CSS", "Redux"],
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: true
+        title: "資産管理のSaaS開発",
+        description: "Vanilla.jsを用いたストアドアプローチによる資産管理SaaSの開発プロジェクト。モダンなUIと効率的なデータフローを実現するフロントエンド構築を担当。",
+        image: "/images/developer.jpg",
+        period: "2023/07",
+        position: "フロントエンド開発者",
+        responsibilities: [
+            "Vanilla.js、ストアドアプローチでの作成",
+            "コンポーネント設計とモジュール化",
+            "状態管理システムの実装",
+            "パフォーマンス最適化",
+            "クロスブラウザ互換性の確保",
+            "REST APIとの統合",
+            "インタラクティブUIの開発"
+        ],
+        tags: ["Vanilla.js", "MySQL", "GitHub", "フロントエンド開発", "SaaS"],
+        liveUrl: "",
+        githubUrl: "",
+        featured: true,
+        category: "web"
     },
     {
         id: 3,
-        title: "Travel Blog",
-        description: "A responsive travel blog with dynamic content management and photo galleries.",
-        image: "/images/project3.jpg",
-        tags: ["Next.js", "GraphQL", "Contentful", "Tailwind CSS"],
+        title: "Health Insurance System",
+        description: "A full-stack e-commerce platform with payment processing, user authentication, and product management.",
+        image: "/images/developer.jpg",
+        tags: ["React", "Node.js", "MongoDB", "Express", "Redux"],
         liveUrl: "https://example.com",
         githubUrl: "https://github.com/yourusername/project",
-        featured: false
+        featured: true,
+        category: "web"
     },
     {
         id: 4,
-        title: "Weather Dashboard",
-        description: "Real-time weather application with location detection and forecast visualization.",
-        image: "/images/project4.jpg",
-        tags: ["React", "APIs", "Chart.js", "Geolocation"],
+        title: "Task Management App",
+        description: "A collaborative task management application with real-time updates and team collaboration features.",
+        image: "/images/developer.jpg",
+        tags: ["React", "Firebase", "Tailwind CSS", "Redux"],
         liveUrl: "https://example.com",
         githubUrl: "https://github.com/yourusername/project",
-        featured: false
-    },
-    {
-        id: 5,
-        title: "Portfolio Website",
-        description: "A personal portfolio website built with modern technologies to showcase projects and skills.",
-        image: "/images/project5.jpg",
-        tags: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: true
-    },
-    {
-        id: 6,
-        title: "Fitness Tracker",
-        description: "A fitness tracking application for monitoring workouts, progress, and health metrics.",
-        image: "/images/project6.jpg",
-        tags: ["React Native", "Firebase", "Charts", "Health APIs"],
-        liveUrl: "https://example.com",
-        githubUrl: "https://github.com/yourusername/project",
-        featured: false
+        featured: true,
+        category: "web"
     }
 ];
 
@@ -76,7 +84,7 @@ type FilterType = "all" | "featured" | "web" | "mobile" | "backend";
 
 export default function Projects() {
     const { t } = useTranslation();
-    const [filter] = useState<FilterType>("all");
+    const [filter, setFilter] = useState<FilterType>("all");
 
     // Filter projects based on selection
     const filteredProjects = () => {
@@ -84,17 +92,12 @@ export default function Projects() {
             case "featured":
                 return projects.filter(project => project.featured);
             case "web":
-                return projects.filter(project =>
-                    project.tags.some(tag => ["React", "Next.js", "HTML", "CSS", "JavaScript"].includes(tag))
-                );
+                return projects.filter(project => project.category === "web");
             case "mobile":
-                return projects.filter(project =>
-                    project.tags.some(tag => ["React Native", "Flutter", "Mobile"].includes(tag))
-                );
+                return projects.filter(project => project.category === "mobile");
             case "backend":
-                return projects.filter(project =>
-                    project.tags.some(tag => ["Node.js", "Express", "MongoDB", "Firebase", "GraphQL"].includes(tag))
-                );
+                return projects.filter(project => project.category === "backend");
+            case "all":
             default:
                 return projects;
         }
@@ -154,6 +157,50 @@ export default function Projects() {
                     </motion.p>
                 </motion.div>
 
+                {/* Filter buttons */}
+                <div className="flex flex-wrap justify-center gap-3 mb-12">
+                    <motion.button
+                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
+                        onClick={() => setFilter('all')}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {t('projects.filter.all')}
+                    </motion.button>
+                    <motion.button
+                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'featured' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
+                        onClick={() => setFilter('featured')}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {t('projects.filter.featured')}
+                    </motion.button>
+                    <motion.button
+                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'web' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
+                        onClick={() => setFilter('web')}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {t('projects.filter.web')}
+                    </motion.button>
+                    <motion.button
+                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'mobile' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
+                        onClick={() => setFilter('mobile')}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {t('projects.filter.mobile')}
+                    </motion.button>
+                    <motion.button
+                        className={`px-4 py-2 rounded-full text-sm font-medium ${filter === 'backend' ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
+                        onClick={() => setFilter('backend')}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {t('projects.filter.backend')}
+                    </motion.button>
+                </div>
+
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                     variants={containerVariants}
@@ -187,15 +234,45 @@ export default function Projects() {
                                 <Image
                                     src={project.image || "/images/placeholder.jpg"}
                                     alt={project.title}
-                                    layout="fill"
-                                    objectFit="cover"
-                                    className="transition-transform duration-500 hover:scale-110"
+                                    width={600}
+                                    height={300}
+                                    className="object-cover w-full h-full transition-transform duration-500 hover:scale-110"
                                 />
                             </div>
 
                             <div className="p-6 flex-1 flex flex-col">
                                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+
+                                {project.period && (
+                                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+                                        <FiCalendar className="mr-2" />
+                                        {project.period}
+                                    </div>
+                                )}
+
+                                {project.position && (
+                                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                                        <FiBriefcase className="mr-2" />
+                                        {project.position}
+                                    </div>
+                                )}
+
                                 <p className="text-gray-600 dark:text-gray-400 mb-4 flex-1">{project.description}</p>
+
+                                {project.responsibilities && (
+                                    <div className="mb-4">
+                                        <details className="text-sm">
+                                            <summary className="cursor-pointer font-medium text-blue-600 dark:text-blue-400 mb-2">
+                                                主な担当業務
+                                            </summary>
+                                            <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-1 text-sm pl-2">
+                                                {project.responsibilities.map((resp, index) => (
+                                                    <li key={index}>{resp}</li>
+                                                ))}
+                                            </ul>
+                                        </details>
+                                    </div>
+                                )}
 
                                 <div className="mb-4 flex flex-wrap gap-2">
                                     {project.tags.map((tag, tagIndex) => (
@@ -210,8 +287,6 @@ export default function Projects() {
                                         </motion.span>
                                     ))}
                                 </div>
-
-                                <p className="text-sm text-gray-500 dark:text-gray-500 mb-3">{t('projects.techStack')}</p>
 
                                 <div className="flex space-x-3 mt-auto">
                                     {project.liveUrl && (
