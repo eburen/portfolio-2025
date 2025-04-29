@@ -53,6 +53,34 @@
         "interests": "İlgi Alanları ve Hobiler",
         "languageSkills": "Dil Becerileri"
     },
+    "experiences": {
+        "w2": {
+            "title": "Yazılım Mühendisi",
+            "company": "W2 A.Ş.",
+            "period": "2022 - 2023",
+            "description": "E-ticaret çözümleri geliştirme ve bakımını yaptım."
+        },
+        "marvel": {
+            "title": "Yazılım Mühendisi",
+            "company": "Marvel A.Ş.",
+            "period": "2023 - Günümüz",
+            "description": "Müşteri ihtiyaçlarına göre çözümler geliştiriyorum."
+        }
+    },
+    "education": {
+        "itBusiness": {
+            "degree": "IT İşletme",
+            "institution": "İşletme Okulu",
+            "period": "2020 - 2022",
+            "description": "IT ve işletme konularında uzmanlaşmış teknik bir kolejden mezun oldum."
+        },
+        "highSchool": {
+            "degree": "Lise",
+            "institution": "OZEL C.O.S.B M.T.A.L",
+            "period": "2014 - 2018",
+            "description": "Mekatronik alanında uzmanlaşmış bir liseden mezun oldum."
+        }
+    },
     "languages": {
         "english": "İngilizce",
         "japanese": "Japonca",

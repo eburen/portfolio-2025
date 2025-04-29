@@ -40,7 +40,7 @@
             "overview": "Overview",
             "technologies": "Technologies",
             "close": "Close"
-        }   
+        }
     },
     "about": {
         "title": "About Me",
@@ -52,6 +52,34 @@
         "education": "Education & Certifications",
         "interests": "Interests & Hobbies",
         "languageSkills": "Language Skills"
+    },
+    "experiences": {
+        "w2": {
+            "title": "Software Engineer",
+            "company": "W2 Inc.",
+            "period": "2022 - 2023",
+            "description": "Developed and maintained e-commerce solutions."
+        },
+        "marvel": {
+            "title": "Software Engineer",
+            "company": "Marvel Inc.",
+            "period": "2023 - Present",
+            "description": "Developing solutions based on client needs."
+        }
+    },
+    "education": {
+        "itBusiness": {
+            "degree": "IT Business",
+            "institution": "School of Business",
+            "period": "2020 - 2022",
+            "description": "Graduated from a technical college specialized in IT and business."
+        },
+        "highSchool": {
+            "degree": "High School",
+            "institution": "OZEL C.O.S.B M.T.A.L",
+            "period": "2014 - 2018",
+            "description": "Graduated from a high school specializing in mechatronics."
+        }
     },
     "languages": {
         "english": "English",

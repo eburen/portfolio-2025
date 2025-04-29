@@ -53,6 +53,34 @@
         "interests": "兴趣爱好",
         "languageSkills": "语言技能"
     },
+    "experiences": {
+        "w2": {
+            "title": "软件工程师",
+            "company": "W2股份公司",
+            "period": "2022 - 2023",
+            "description": "开发和维护电子商务解决方案。"
+        },
+        "marvel": {
+            "title": "软件工程师",
+            "company": "Marvel股份公司",
+            "period": "2023 - 至今",
+            "description": "根据客户需求开发解决方案。"
+        }
+    },
+    "education": {
+        "itBusiness": {
+            "degree": "IT商务",
+            "institution": "商务学院",
+            "period": "2020 - 2022",
+            "description": "毕业于专注IT和商务的技术学院。"
+        },
+        "highSchool": {
+            "degree": "高中",
+            "institution": "OZEL C.O.S.B M.T.A.L",
+            "period": "2014 - 2018",
+            "description": "毕业于机电一体化专业高中。"
+        }
+    },
     "languages": {
         "english": "英语",
         "japanese": "日语",

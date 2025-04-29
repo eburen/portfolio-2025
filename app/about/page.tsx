@@ -4,40 +4,50 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { FiCalendar, FiAward } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { BiStar } from "react-icons/bi";
 
 export default function AboutPage() {
     const { t } = useTranslation();
 
-    // Experience data
+    // Experience data with translations
     const experiences = [
         {
-            title: "SE",
-            company: "Ｗ２株式会社",
-            period: "2022 - 2023",
-            description: "Eーコマースのソリューションを開発と保守を行っていました。"
+            title: t('experiences.w2.title'),
+            company: t('experiences.w2.company'),
+            period: t('experiences.w2.period'),
+            description: t('experiences.w2.description')
         },
         {
-            title: "SE",
-            company: "Ｍａｒｖｅｌ株式会社",
-            period: "2023 - 現在",
-            description: "顧客のニーズに応じてソリューションを開発しています。"
+            title: t('experiences.marvel.title'),
+            company: t('experiences.marvel.company'),
+            period: t('experiences.marvel.period'),
+            description: t('experiences.marvel.description')
         }
     ];
 
-    // Education data
+    // Education data with translations
     const education = [
         {
-            degree: "ITビジネス",
-            institution: "専門学校スクール・オフ・ビジネス",
-            period: "2020 - 2022",
-            description: "IT・ビジネス関連の専門学校を卒業しました。"
+            degree: t('education.itBusiness.degree'),
+            institution: t('education.itBusiness.institution'),
+            period: t('education.itBusiness.period'),
+            description: t('education.itBusiness.description')
         },
         {
-            degree: "高校",
-            institution: "OZEL C.O.S.B M.T.A.L",
-            period: "2014 - 2018",
-            description: "メカトロニクス系の高校を卒業しました。"
+            degree: t('education.highSchool.degree'),
+            institution: t('education.highSchool.institution'),
+            period: t('education.highSchool.period'),
+            description: t('education.highSchool.description')
         }
+    ];
+
+    // Language skills data with translations
+    const languageSkills = [
+        { name: t('languages.english'), level: t('languages.businessLevel'), rating: 4.5, progress: '90%' },
+        { name: t('languages.japanese'), level: t('languages.businessLevel'), rating: 5, progress: '100%' },
+        { name: t('languages.turkish'), level: t('languages.native'), rating: 5, progress: '100%' },
+        { name: t('languages.chinese'), level: t('languages.beginnerLevel'), rating: 1.5, progress: '30%' }
     ];
 
     return (
@@ -106,7 +116,7 @@ export default function AboutPage() {
 
                 {/* Language Skills */}
                 <motion.div
-                    className="mb-20"
+                    className="mb-20 bg-gray-900/30 rounded-xl p-8"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
@@ -117,46 +127,42 @@ export default function AboutPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <span className="text-blue-600 dark:text-blue-500">{t('about.languageSkills')}</span>
+                        {t('about.languageSkills')}
                     </motion.h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <motion.div
-                            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                        >
-                            <h3 className="text-xl font-bold mb-2">{t('about.english')}</h3>
-                            <p className="text-gray-600 dark:text-gray-400">{t('about.businessLevel')}</p>
-                        </motion.div>
-                        <motion.div
-                            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                        >
-                            <h3 className="text-xl font-bold mb-2">{t('about.japanese')}</h3>
-                            <p className="text-gray-600 dark:text-gray-400">{t('about.businessLevel')}</p>
-                        </motion.div>
-                        <motion.div
-                            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
-                        >
-                            <h3 className="text-xl font-bold mb-2">{t('about.turkish')}</h3>
-                            <p className="text-gray-600 dark:text-gray-400">{t('about.native')}</p>
-                        </motion.div>
-                        <motion.div
-                            className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.4 }}
-                        >
-                            <h3 className="text-xl font-bold mb-2">{t('about.chinese')}</h3>
-                            <p className="text-gray-600 dark:text-gray-400">{t('about.beginnerLevel')}</p>
-                        </motion.div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {languageSkills.map((language, index) => (
+                            <motion.div
+                                key={language.name}
+                                className="bg-gray-800/50 rounded-lg p-4"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+                            >
+                                <div className="flex justify-between items-center mb-1">
+                                    <h3 className="font-medium">{language.name}</h3>
+                                    <div className="flex text-yellow-400">
+                                        {language.rating >= 1 && <FaStar className="w-4 h-4" />}
+                                        {language.rating >= 2 && <FaStar className="w-4 h-4" />}
+                                        {language.rating >= 3 && <FaStar className="w-4 h-4" />}
+                                        {language.rating >= 4 && <FaStar className="w-4 h-4" />}
+                                        {language.rating >= 5 ?
+                                            <FaStar className="w-4 h-4" /> :
+                                            language.rating >= 4.5 ?
+                                                <FaStarHalfAlt className="w-4 h-4" /> :
+                                                <BiStar className="w-4 h-4" />
+                                        }
+                                    </div>
+                                </div>
+                                <p className="text-sm text-gray-400 mb-2">{language.level}</p>
+                                <div className="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div
+                                        className="bg-green-500 h-2.5 rounded-full"
+                                        style={{ width: language.progress }}
+                                    ></div>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </motion.div>
 

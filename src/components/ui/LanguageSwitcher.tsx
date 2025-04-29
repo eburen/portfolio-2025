@@ -13,6 +13,17 @@ const languages = [
     { code: 'zh', name: '中文', flag: '🇨🇳' }
 ];
 
+// Save language preference safely
+const saveLanguagePreference = (langCode: string) => {
+    try {
+        if (typeof window !== 'undefined' && window.localStorage) {
+            localStorage.setItem('i18nextLng', langCode);
+        }
+    } catch (error) {
+        console.error('Error saving language preference:', error);
+    }
+};
+
 export default function LanguageSwitcher() {
     const { i18n } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +50,7 @@ export default function LanguageSwitcher() {
     const changeLanguage = (langCode: string) => {
         i18n.changeLanguage(langCode);
         // Save language preference
-        localStorage.setItem('i18nextLng', langCode);
+        saveLanguagePreference(langCode);
         setIsOpen(false);
     };
 

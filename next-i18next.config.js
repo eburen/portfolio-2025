@@ -2,8 +2,8 @@
 module.exports = {
   i18n: {
     defaultLocale: 'ja',
-    locales: ['ja'],
-    localeDetection: false,
+    locales: ['ja', 'en', 'tr', 'zh'],
+    localeDetection: true,
   },
   defaultNS: 'translation',
   localePath: './public/locales',
