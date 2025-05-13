@@ -36,7 +36,7 @@ if (typeof window !== 'undefined') {
     i18nInstance
         .use(initReactI18next)
         .use(
-            resourcesToBackend((language, namespace) =>
+            resourcesToBackend((language: string, namespace: string) =>
                 import(`../public/locales/${language}/${namespace}.json`)
             )
         )

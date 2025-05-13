@@ -34,7 +34,7 @@
         "description": "Check out my latest work. These projects showcase my technical abilities and problem-solving skills.",
         "viewAll": "View All",
         "techStack": "Tech Stack:",
-        "header": "My Work",
+        "header": "Projects",
         "subheader": "Showcasing my recent work and personal projects",
         "projectDetails": {
             "overview": "Overview",
@@ -92,7 +92,7 @@
     },
     "footer": {
         "rights": "© 2025 All rights reserved.",
-        "madeWith": "Made with ❤️"
+        "madeWith": "Made with ❤️ & Next.js"
     },
     "social": {
         "github": "GitHub",

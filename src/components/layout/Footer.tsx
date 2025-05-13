@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../ui/LanguageSwitcher";
 
 const socialLinks = [
     {
@@ -67,10 +66,6 @@ export default function Footer() {
                         <Link href="/projects" className="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                             {t('navigation.projects')}
                         </Link>
-                    </div>
-
-                    <div className="mt-4">
-                        <LanguageSwitcher />
                     </div>
 
                     <div className="mt-6 text-sm text-gray-500 dark:text-gray-500">

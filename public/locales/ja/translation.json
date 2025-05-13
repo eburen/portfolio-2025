@@ -34,7 +34,7 @@
         "description": "私の最新の作品をご覧ください。これらのプロジェクトは、私の技術的能力と問題解決スキルを示しています。",
         "viewAll": "すべて見る",
         "techStack": "使用技術:",
-        "header": "私の作品",
+        "header": "プロジェクト",
         "subheader": "最近の作品と個人プロジェクトの紹介",
         "projectDetails": {
             "overview": "概要",
@@ -92,7 +92,7 @@
     },
     "footer": {
         "rights": "© 2025 All rights reserved.",
-        "madeWith": "Made with ❤️"
+        "madeWith": "Made with ❤️ & Next.js"
     },
     "social": {
         "github": "GitHub",

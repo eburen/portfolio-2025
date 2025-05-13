@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { FiMenu, FiX, FiGithub, FiLinkedin } from "react-icons/fi";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../ui/LanguageSwitcher";
 
 const navLinks = [
     { path: "/", label: "navigation.home" },
@@ -40,6 +41,10 @@ export default function Navbar() {
                             </span>
                         </motion.div>
                     </Link>
+
+                    <div className="flex items-center">
+                        <LanguageSwitcher />
+                    </div>
 
                     <div className="hidden md:flex items-center">
                         <nav className="flex items-center space-x-8 mr-6">
